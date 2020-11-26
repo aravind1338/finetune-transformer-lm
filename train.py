@@ -404,9 +404,9 @@ if __name__ == '__main__':
     sess = tf.Session(config=tf.ConfigProto(allow_soft_placement=True))
     sess.run(tf.global_variables_initializer())
 
-    shapes = json.load(open('model/params_shapes.json'))
+    shapes = json.load(open('finetune-transformer-lm/model/params_shapes.json'))
     offsets = np.cumsum([np.prod(shape) for shape in shapes])
-    init_params = [np.load('model/params_{}.npy'.format(n)) for n in range(10)]
+    init_params = [np.load('finetune-transformer-lm/model/params_{}.npy'.format(n)) for n in range(10)]
     init_params = np.split(np.concatenate(init_params, 0), offsets)[:-1]
     init_params = [param.reshape(shape) for param, shape in zip(init_params, shapes)]
     init_params[0] = init_params[0][:n_ctx]
