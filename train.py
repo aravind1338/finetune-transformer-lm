@@ -6,7 +6,9 @@ import joblib
 import random
 import argparse
 import numpy as np
-import tensorflow as tf
+#import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 from tqdm import tqdm
 from functools import partial
